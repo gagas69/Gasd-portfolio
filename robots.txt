@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gagas69.github.io/Gasd-portfolio/sitemap.xml
