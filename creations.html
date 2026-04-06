@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Créations — GasdProduction</title>
+  <meta name="description" content="Découvrez les productions vidéo et créations artistiques de GasdProduction." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- =============================================
+       NAVIGATION (identique à index.html)
+       ============================================= -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="asset/logo vert.png" alt="GasdProduction" />
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="creations.html" class="active">Créations</a></li>
+      <li><a href="a-propos.html">À Propos</a></li>
+      <li><a href="mailto:contact@gasdproduction.com" class="nav-cta">Me contacter</a></li>
+    </ul>
+
+    <button class="nav-hamburger" aria-label="Menu" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- =============================================
+       PAGE HERO
+       ============================================= -->
+  <div class="page-hero">
+    <p class="page-hero-eyebrow">Portfolio</p>
+    <h1 class="page-hero-title">Mes Créations.</h1>
+    <p class="page-hero-subtitle">
+      Films, clips, publicités et directions artistiques — chaque projet raconté avec intention.
+    </p>
+  </div>
+
+  <!-- =============================================
+       GRILLE DES CRÉATIONS — Dossiers
+       ============================================= -->
+  <section class="section" style="padding-top:0;">
+    <div class="folder-grid" id="folderGrid">
+
+      <!-- === DOSSIER 1 : Direction Artistique === -->
+      <article class="folder-card reveal" onclick="window.location.href='creations-da.html'">
+        <div class="folder-wrapper">
+          <div class="folder-back"></div>
+          <div class="folder-photos">
+            <div class="folder-photo left" style="background: linear-gradient(145deg, #e0c3fc, #8ec5fc);"></div>
+            <div class="folder-photo right" style="background: linear-gradient(145deg, #ffecd2, #fcb69f);"></div>
+            <div class="folder-photo center" style="background: linear-gradient(145deg, #cfd9df, #e2ebf0);"></div>
+          </div>
+          <div class="folder-front">
+            <div class="folder-sticker torii">⛩️</div>
+            <div class="folder-sticker star" style="bottom: 25px; left: 20px; top: auto; right: auto;">🖌️</div>
+            <div class="folder-lines">
+              <div class="folder-line"></div>
+              <div class="folder-line"></div>
+            </div>
+          </div>
+        </div>
+        <h2 class="folder-title">Direction Artistique</h2>
+        <span class="folder-badge">Projets complets</span>
+      </article>
+
+      <!-- === DOSSIER 2 : Publicité === -->
+      <article class="folder-card reveal reveal-delay-1" onclick="openFolder('pubs', 'Publicité')">
+        <div class="folder-wrapper">
+          <div class="folder-back"></div>
+          <div class="folder-photos">
+            <div class="folder-photo left" style="background: linear-gradient(145deg, #a18cd1, #fbc2eb);"></div>
+            <div class="folder-photo right" style="background: linear-gradient(145deg, #fccb90, #d57eeb);"></div>
+            <div class="folder-photo center" style="background: linear-gradient(145deg, #fc4a1a, #f7b733);"></div>
+          </div>
+          <div class="folder-front">
+            <div class="folder-sticker star">✨</div>
+            <div class="folder-sticker torii">🏙️</div>
+            <div class="folder-lines">
+              <div class="folder-line"></div>
+              <div class="folder-line"></div>
+            </div>
+          </div>
+        </div>
+        <h2 class="folder-title">Publicité</h2>
+        <span class="folder-badge">Campagnes</span>
+      </article>
+
+      <!-- === DOSSIER 3 : Mariage === -->
+      <article class="folder-card reveal reveal-delay-2" onclick="openFolder('mariage', 'Mariage')">
+        <div class="folder-wrapper">
+          <div class="folder-back"></div>
+          <div class="folder-photos">
+            <div class="folder-photo left" style="background: linear-gradient(145deg, #ff9a9e, #fecfef);"></div>
+            <div class="folder-photo right" style="background: linear-gradient(145deg, #f6d365, #fda085);"></div>
+            <div class="folder-photo center" style="background: linear-gradient(145deg, #fbc2eb, #a6c1ee);"></div>
+          </div>
+          <div class="folder-front">
+            <div class="folder-sticker stamp"
+              style="background: white; border-radius:50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">💍</div>
+            <div class="folder-lines">
+              <div class="folder-line"></div>
+              <div class="folder-line"></div>
+            </div>
+          </div>
+        </div>
+        <h2 class="folder-title">Mariage</h2>
+        <span class="folder-badge">Souvenirs mémorables</span>
+      </article>
+
+    </div>
+    <!-- FIN de la grille des dossiers -->
+  </section>
+
+  <!-- =============================================
+       DONNÉES CACHÉES DES DOSSIERS (CONTENU)
+       C'est ici que tu ajoutes tes vraies vidéos (iframe) ou images.
+       Chaque div avec id="content-XXX" correspond à un dossier.
+       ============================================= -->
+  <div style="display:none;">
+
+    <!-- Contenu DA -->
+    <div id="content-da">
+      <p style="color:var(--color-text-secondary); line-height:1.5; margin-bottom:32px; font-size:16px;">
+        Travaux de recherche visuelle, design de plateaux et moodboards.
+      </p>
+      <div class="project-list-grid"></div>
+    </div>
+
+    <!-- Contenu Publicité -->
+    <div id="content-pubs">
+      <p style="color:var(--color-text-secondary); line-height:1.5; margin-bottom:32px; font-size:16px;">
+        Campagnes publicitaires créatives mettant en valeur les marques.
+      </p>
+      <div class="project-list-grid"></div>
+    </div>
+
+    <!-- Contenu Mariage -->
+    <div id="content-mariage">
+      <p style="color:var(--color-text-secondary); line-height:1.5; margin-bottom:32px; font-size:16px;">
+        Vidéos et reportages pour capturer vos plus beaux instants.
+      </p>
+      <div class="project-list-grid"></div>
+    </div>
+
+  </div>
+
+  <!-- =============================================
+       MODAL D'AFFICHAGE DU DOSSIER
+       ============================================= -->
+  <div class="project-modal" id="projectModal">
+    <div class="modal-backdrop" onclick="closeFolder()"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Titre</h2>
+        <button class="modal-close" onclick="closeFolder()" aria-label="Fermer">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Le contenu du dossier s'injecte ici via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =============================================
+       CTA CONTACT
+       ============================================= -->
+  <section class="section" style="padding-top:0; text-align:center;">
+    <div class="reveal">
+      <p
+        style="font-size:14px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-text-secondary); margin-bottom:20px;">
+        Un projet en tête ?</p>
+      <h2
+        style="font-size:clamp(32px,5vw,60px); font-weight:900; letter-spacing:-0.04em; margin-bottom:32px; line-height:1.1;">
+        Parlons-en.</h2>
+      <a href="mailto:contact@gasdproduction.com" class="btn btn-primary" style="font-size:17px; padding:18px 40px;">Me
+        contacter</a>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+       ============================================= -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="asset/logoblanc.png" alt="GasdProduction" />
+        <p>Production Vidéo & Direction Artistique.<br />Donnons vie à vos idées.</p>
+      </div>
+      <nav class="footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="creations.html">Créations</a></li>
+          <li><a href="a-propos.html">À Propos</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:contact@gasdproduction.com">contact@gasdproduction.com</a></li>
+          <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://youtube.com" target="_blank" rel="noopener">YouTube</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 GasdProduction. Tous droits réservés.</span>
+      <span>Fait avec ♥ par Gaspard Degorre</span>
+    </div>
+  </footer>
+
+  <!-- Fichier JS Principal -->
+  <script src="js/main.js"></script>
+
+  <!-- =============================================
+       CHARGEMENT DYNAMIQUE DEPUIS FIREBASE
+       ============================================= -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAGgdg-NMTgWYuoVvGjYpCKzxiH8AkcD_M",
+      authDomain: "gasd-c41ca.firebaseapp.com",
+      projectId: "gasd-c41ca",
+      storageBucket: "gasd-c41ca.firebasestorage.app",
+      messagingSenderId: "606280464457",
+      appId: "1:606280464457:web:d2372ab12f4ad179a56798",
+      measurementId: "G-DWG90Y3W1H"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function loadCreations() {
+      try {
+        const q = query(collection(db, "creations"), orderBy("dateAdded", "desc"));
+        const querySnapshot = await getDocs(q);
+
+        // Vider les grilles
+        if (!querySnapshot.empty) {
+          document.querySelector('#content-da .project-list-grid').innerHTML = '';
+          document.querySelector('#content-pubs .project-list-grid').innerHTML = '';
+          document.querySelector('#content-mariage .project-list-grid').innerHTML = '';
+        }
+
+        querySnapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+          const grid = document.querySelector(`#content-${data.folder} .project-list-grid`);
+          if (!grid) return;
+
+          // ---- TYPE : Direction Artistique (riche) ----
+          if (data.type === 'da' || (data.folder === 'da' && data.type !== 'video')) {
+            const card = document.createElement('div');
+            card.className = 'project-thumb-card';
+            card.style.cursor = 'pointer';
+            // Toujours ouvrir la page de détail
+            card.onclick = () => window.location.href = `projet-da.html?id=${docSnap.id}`;
+
+            let bgStyle = `background: linear-gradient(145deg, ${data.couleur1 || '#a18cd1'}, ${data.couleur2 || '#fbc2eb'});`;
+            if (data.photos && data.photos[0]) {
+              bgStyle = `background-image: url('${data.photos[0]}'); background-size: cover; background-position: center;`;
+            }
+
+            const photosIndicator = (data.photos && data.photos.length > 1)
+              ? `<span style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.55);color:#fff;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:700;">📷 ${data.photos.length}</span>` : '';
+
+            card.innerHTML = `
+              <div class="thumb-image" style="${bgStyle}; position:relative;">
+                ${photosIndicator}
+              </div>
+              <h3 class="thumb-title">${data.titre || '(Sans titre)'}</h3>
+              <span class="thumb-tag">${data.tag || 'GasdProduction'}</span>
+              ${data.description ? `<p style="font-size:13px;color:var(--color-text-secondary);margin-top:6px;line-height:1.5;">${data.description.slice(0, 90)}${data.description.length > 90 ? '…' : ''}</p>` : ''}
+            `;
+            grid.appendChild(card);
+
+            // ---- TYPE : Vidéo ----
+          } else {
+            const a = document.createElement('a');
+            a.href = data.lien || '#';
+            a.target = '_blank';
+            a.className = 'project-thumb-card';
+
+            let bgStyle = `background: linear-gradient(145deg, ${data.couleur1 || '#f093fb'}, ${data.couleur2 || '#f5576c'});`;
+            if (data.youtubeId && data.youtubeId.length > 4) {
+              bgStyle = `background-image: url('https://img.youtube.com/vi/${data.youtubeId}/maxresdefault.jpg'); background-size: cover; background-position: center;`;
+            }
+
+            a.innerHTML = `
+              <div class="thumb-image" style="${bgStyle}"></div>
+              <h3 class="thumb-title">${data.titre || '(Sans titre)'}</h3>
+              <span class="thumb-tag">${data.artiste || 'GasdProduction'}</span>
+            `;
+            grid.appendChild(a);
+          }
+        });
+      } catch (e) {
+        console.warn("Firebase n'est pas encore configuré ou la base est vide.", e);
+      }
+    }
+
+    // Charger les créations automatiquement au lancement
+    loadCreations();
+  </script>
+</body>
+
+</html>

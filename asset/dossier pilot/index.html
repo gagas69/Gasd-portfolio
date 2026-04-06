@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Pilot - L'application tout-en-un pour les vidéastes, photographes et freelances. Gérez vos factures, clients, tournages et déclarations URSSAF en toute simplicité.">
+    <meta name="keywords"
+        content="facturation, freelance, vidéaste, photographe, URSSAF, gestion, tournage, entrepreneur">
+    <meta name="author" content="Pilot">
+
+    <title>Pilot - Gérez votre activité créative en toute simplicité</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/Pilot.png">
+
+    <!-- Google Fonts - SF Pro style alternative -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <img src="assets/images/Pilotblanc.png" alt="Pilot" class="splash-logo">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="nav-logo">
+                <img src="assets/images/Pilot.png" alt="Pilot Logo" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Fonctionnalités</a></li>
+                <li><a href="#screenshots">Aperçu</a></li>
+                <li><a href="#testimonials">Témoignages</a></li>
+                <li><a href="#pricing">Tarifs</a></li>
+            </ul>
+            <a href="#download" class="btn btn-primary nav-cta">
+                Télécharger
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="#features">Fonctionnalités</a></li>
+            <li><a href="#screenshots">Aperçu</a></li>
+            <li><a href="#testimonials">Témoignages</a></li>
+            <li><a href="#pricing">Tarifs</a></li>
+            <li><a href="#download" class="btn btn-primary">Télécharger</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section - Apple Style -->
+    <section class="hero-apple" id="hero">
+        <div class="hero-apple-content">
+            <h1 class="hero-apple-title">Pilot</h1>
+            <p class="hero-apple-tagline">Gérez votre activité créative.<br><span class="text-gradient">En toute
+                    simplicité.</span></p>
+            <p class="hero-apple-subtitle">L'application tout-en-un pour les vidéastes, photographes et freelances.</p>
+            <div class="hero-apple-cta">
+                <a href="#download" class="btn-apple-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                    </svg>
+                    Télécharger
+                </a>
+                <a href="#features" class="btn-apple-secondary">En savoir plus</a>
+            </div>
+        </div>
+        <div class="hero-apple-phone">
+            <div class="iphone-frame">
+                <div class="iphone-screen">
+                    <img src="assets/images/IMG_8978.PNG" alt="Pilot App" class="iphone-screenshot">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Fonctionnalités</span>
+                <h2 class="section-title">Tout ce dont vous avez besoin pour gérer votre activité</h2>
+                <p class="section-subtitle">
+                    Pilot réunit tous les outils essentiels pour les créateurs indépendants dans une interface intuitive
+                    et élégante.
+                </p>
+            </div>
+
+            <div class="features-stack">
+                <div class="stack-card card-1" style="--card-color: #d4f5d4; --card-text: #2d7a2d;">
+                    <div class="stack-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="18" fill="#2d7a2d" />
+                            <text x="24" y="30" text-anchor="middle" fill="white" font-size="20"
+                                font-weight="bold">€</text>
+                        </svg>
+                    </div>
+                    <h3>Revenus</h3>
+                    <ul>
+                        <li>✦ Suivi des revenus</li>
+                        <li>✦ Statistiques mensuelles</li>
+                        <li>✦ Objectifs financiers</li>
+                        <li>✦ Graphiques clairs</li>
+                        <li>✦ Export données</li>
+                    </ul>
+                </div>
+
+                <div class="stack-card card-2" style="--card-color: #ffd9d9; --card-text: #d64545;">
+                    <div class="stack-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <rect x="10" y="6" width="20" height="28" rx="3" fill="#d64545" />
+                            <rect x="18" y="18" width="20" height="18" rx="3" fill="#ff8a8a" />
+                            <path d="M22 26h12M22 30h8" stroke="white" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3>Factures</h3>
+                    <ul>
+                        <li>✦ Factures professionnelles</li>
+                        <li>✦ Suivi des paiements</li>
+                        <li>✦ Export PDF</li>
+                        <li>✦ Rappels automatiques</li>
+                        <li>✦ Modèles personnalisables</li>
+                    </ul>
+                </div>
+
+                <div class="stack-card card-3" style="--card-color: #d9ebff; --card-text: #2d6fba;">
+                    <div class="stack-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <circle cx="16" cy="16" r="7" fill="#2d6fba" />
+                            <circle cx="32" cy="16" r="7" fill="#2d6fba" />
+                            <path d="M6 42c0-10 8-14 18-14s18 4 18 14" fill="#5b9dff" />
+                        </svg>
+                    </div>
+                    <h3>Clients</h3>
+                    <ul>
+                        <li>✦ Fiche client complète</li>
+                        <li>✦ Historique factures</li>
+                        <li>✦ Coordonnées</li>
+                        <li>✦ Notes et commentaires</li>
+                        <li>✦ Recherche rapide</li>
+                    </ul>
+                </div>
+
+                <div class="stack-card card-4" style="--card-color: #fff2d9; --card-text: #cc7a00;">
+                    <div class="stack-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <rect x="10" y="8" width="28" height="34" rx="3" fill="#cc7a00" />
+                            <rect x="18" y="4" width="12" height="8" rx="2" fill="#ffb347" />
+                            <path d="M16 22h16M16 30h12M16 38h8" stroke="white" stroke-width="2.5"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3>Projets</h3>
+                    <ul>
+                        <li>✦ Planification complète</li>
+                        <li>✦ Vue calendrier</li>
+                        <li>✦ Rappels automatiques</li>
+                        <li>✦ Géolocalisation</li>
+                        <li>✦ Checklist personnalisable</li>
+                    </ul>
+                </div>
+
+                <div class="stack-card card-5" style="--card-color: #e8d9ff; --card-text: #7b3dba;">
+                    <div class="stack-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <rect x="8" y="28" width="8" height="12" rx="2" fill="#7b3dba" />
+                            <rect x="20" y="20" width="8" height="20" rx="2" fill="#a855f7" />
+                            <rect x="32" y="12" width="8" height="28" rx="2" fill="#7b3dba" />
+                        </svg>
+                    </div>
+                    <h3>URSSAF</h3>
+                    <ul>
+                        <li>✦ Estimation cotisations</li>
+                        <li>✦ Suivi en temps réel</li>
+                        <li>✦ Historique déclarations</li>
+                        <li>✦ Pot d'épargne</li>
+                        <li>✦ Rappels échéances</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section class="screenshots" id="screenshots">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Aperçu</span>
+                <h2 class="section-title">Une interface pensée pour vous</h2>
+                <p class="section-subtitle">
+                    Design moderne et intuitif, mode sombre inclus. Pilot s'adapte à votre façon de travailler.
+                </p>
+            </div>
+
+            <div class="screenshots-showcase">
+                <div class="screenshot-item">
+                    <div class="screenshot-phone">
+                        <img src="assets/images/IMG_9062.PNG" alt="Pilot Agenda" class="screenshot-img">
+                    </div>
+                    <h4>Agenda</h4>
+                    <p>Planifiez vos tournages</p>
+                </div>
+
+                <div class="screenshot-item featured">
+                    <div class="screenshot-phone large">
+                        <img src="assets/images/IMG_8979.PNG" alt="Pilot Factures" class="screenshot-img">
+                    </div>
+                    <h4>Factures</h4>
+                    <p>Gérez vos paiements facilement</p>
+                </div>
+
+                <div class="screenshot-item">
+                    <div class="screenshot-phone">
+                        <img src="assets/images/IMG_9066.PNG" alt="Pilot URSSAF" class="screenshot-img">
+                    </div>
+                    <h4>URSSAF</h4>
+                    <p>Anticipez vos cotisations</p>
+                </div>
+            </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Témoignages</span>
+                <h2 class="section-title">Ils ont adopté Pilot</h2>
+                <p class="section-subtitle">
+                    Découvrez ce que les créateurs pensent de notre application.
+                </p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                    <p class="testimonial-text">
+                        "Pilot a révolutionné ma gestion administrative. Fini les tableurs Excel,
+                        tout est centralisé et tellement plus agréable à utiliser !"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">ML</div>
+                        <div class="author-info">
+                            <span class="author-name">Marie Laurent</span>
+                            <span class="author-role">Vidéaste freelance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                    <p class="testimonial-text">
+                        "L'estimation URSSAF en temps réel est un game-changer.
+                        Je sais toujours combien mettre de côté. Merci Pilot !"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">TD</div>
+                        <div class="author-info">
+                            <span class="author-name">Thomas Durand</span>
+                            <span class="author-role">Photographe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                    <p class="testimonial-text">
+                        "Interface magnifique, intuitive et complète.
+                        C'est exactement ce qu'il me fallait pour mon activité de cadreur."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SB</div>
+                        <div class="author-info">
+                            <span class="author-name">Sophie Bernard</span>
+                            <span class="author-role">Cadreuse / Réalisatrice</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Tarifs</span>
+                <h2 class="section-title">Simple et transparent</h2>
+                <p class="section-subtitle">
+                    Pas de surprise, pas de frais cachés. Pilot est conçu pour les indépendants.
+                </p>
+            </div>
+
+            <div class="pricing-cards">
+                <!-- Gratuit -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Gratuit</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">0€</span>
+                            <span class="price-period">/ pour toujours</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            7 factures
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            7 clients
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            7 événements calendrier
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            Vue URSSAF
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            Mode sombre
+                        </li>
+                    </ul>
+                    <a href="#download" class="btn btn-secondary btn-block">
+                        Commencer gratuitement
+                    </a>
+                </div>
+
+                <!-- Pro -->
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Populaire</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Pro</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">9,99€</span>
+                            <span class="price-period">/ mois</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            Factures illimitées
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            Clients illimités
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            Événements illimités
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            Estimation URSSAF complète
+                        </li>
+                        <li class="highlight">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <strong>Checklist tournage</strong>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            Toutes les fonctionnalités
+                        </li>
+                    </ul>
+                    <a href="#download" class="btn btn-primary btn-block">
+                        Passer à Pro
+                    </a>
+                </div>
+
+                <!-- Team -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Team</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">14,99€</span>
+                            <span class="price-period">/ mois</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            Tout le plan Pro
+                        </li>
+                        <li class="highlight">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <strong>Multi-utilisateurs</strong>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            Compte entreprise partagé
+                        </li>
+                        <li class="highlight">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <strong>Export comptable</strong>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            Support prioritaire
+                        </li>
+                    </ul>
+                    <a href="#download" class="btn btn-secondary btn-block">
+                        Passer à Team
+                    </a>
+                </div>
+            </div>
+
+            <p class="pricing-note">
+                💳 Paiement sécurisé via l'App Store. Annulation possible à tout moment.
+            </p>
+        </div>
+    </section>
+
+    <!-- Download CTA Section -->
+    <section class="download-cta" id="download">
+        <div class="container">
+            <div class="cta-content">
+                <img src="assets/images/Pilotblanc.png" alt="Pilot" class="cta-logo">
+                <h2 class="cta-title">Prêt à simplifier votre quotidien ?</h2>
+                <p class="cta-subtitle">
+                    Rejoignez les créateurs qui ont choisi Pilot pour gérer leur activité.
+                </p>
+                <a href="#" class="btn btn-white btn-large">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                    </svg>
+                    Télécharger sur l'App Store
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/images/Pilot.png" alt="Pilot" class="footer-logo">
+                    <p>L'application de gestion pour les créateurs indépendants.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Produit</h4>
+                        <ul>
+                            <li><a href="#features">Fonctionnalités</a></li>
+                            <li><a href="#pricing">Tarifs</a></li>
+                            <li><a href="#screenshots">Aperçu</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Aide</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Légal</h4>
+                        <ul>
+                            <li><a href="#">Confidentialité</a></li>
+                            <li><a href="#">CGU</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pilot. Tous droits réservés.</p>
+                <p>Fait avec ❤️ pour les créateurs</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>

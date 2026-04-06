@@ -1,0 +1,239 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fafafa;
+    font-family: 'Jost', sans-serif;
+    color: #333;
+    overflow-x: auto;
+    min-height: 100vh;
+}
+
+.test-header {
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-title {
+    font-family: 'Lora', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: #222;
+}
+
+.back-link {
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+    color: #666;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+.back-link:hover { color: #000; }
+
+/* THE BOOKSHELF */
+.bookshelf-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 65vh;
+    padding: 2rem 4rem;
+    perspective: 2000px; /* Deep perspective for smooth 3D */
+    gap: 10px; /* Natural gap between books */
+}
+
+/* CONTAINER (Controls Flow / Width) */
+.book-container {
+    position: relative;
+    width: 60px; /* Width of the spine */
+    height: 400px;
+    transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s ease, margin 0.8s ease;
+    cursor: pointer;
+    
+    /* Subtle breathing animation */
+    animation: breathing 6s ease-in-out infinite alternate;
+}
+
+/* Organic random rotations */
+.book-container:nth-child(1) { animation-delay: 0s; transform: rotateZ(-2deg) translateY(5px); }
+.book-container:nth-child(2) { animation-delay: -1s; height: 380px; transform: rotateZ(1deg); }
+.book-container:nth-child(3) { animation-delay: -2s; height: 420px; transform: rotateZ(-1deg) translateY(-5px); }
+.book-container:nth-child(4) { animation-delay: -3s; height: 350px; transform: rotateZ(3deg); }
+.book-container:nth-child(5) { animation-delay: -4s; height: 390px; transform: rotateZ(-2deg); }
+
+@keyframes breathing {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-8px); }
+}
+
+/* THE 3D BOOK WRAPPER */
+.book {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px; /* Width of the cover */
+    height: 100%;
+    transform-style: preserve-3d;
+    transform-origin: left center;
+    /* By default, rotated so we see the spine */
+    transform: rotateY(-90deg) translateZ(30px); 
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.book-cover, .book-spine, .book-pages {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+/* FRONT COVER */
+.book-cover {
+    width: 300px;
+    transform-origin: left center;
+    transform: translateZ(30px); /* Move forward - half book thickness */
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 3;
+}
+
+.cover-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    padding: 2rem;
+    box-shadow: inset 10px 0 20px rgba(0,0,0,0.15), 5px 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.cover-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    background-color: #e0e0e0;
+    background-image: linear-gradient(to right, #ccc, #e0e0e0 10%, #fff 90%);
+    box-shadow: inset -5px 0 15px rgba(0,0,0,0.1); 
+}
+
+/* SPINE */
+.book-spine {
+    width: 60px; /* Thickness of book */
+    transform-origin: left center;
+    transform: rotateY(-90deg); /* Left edge relative to the cover */
+    background-color: #aaa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.4); 
+}
+
+.spine-text {
+    transform: rotate(180deg);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: white;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* INSIDE PAGES */
+.book-pages {
+    width: 300px;
+    transform: translateZ(-30px); /* Move backward */
+    background-color: #fff;
+    box-shadow: -5px 5px 15px rgba(0,0,0,0.1), inset 15px 0 20px rgba(0,0,0,0.05); /* Shadow inside binding */
+    border-radius: 0 4px 4px 0;
+}
+
+.page-content {
+    padding: 3rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.page-content h3 { font-family: 'Lora', serif; font-size: 1.8rem; margin-bottom: 1rem; }
+.page-content p { font-size: 1rem; line-height: 1.5; color: #555; margin-bottom: 2rem; }
+
+/* ---------------------- CLASSES ACTIVES ---------------------- */
+
+/* 1. SELECTIONNÉ (Fait face à l'utilisateur) */
+.book-container.is-active {
+    width: 300px; /* Prend la place de la couverture */
+    margin: 0 20px; /* Repousse les autres de manière plus agressive */
+    animation: none; /* Arrêt du flottement */
+    transform: scale(1.05); /* Mise en évidence */
+    z-index: 10;
+}
+
+.book-container.is-active .book {
+    transform: rotateY(0deg) translateZ(0px);
+}
+
+.book-container.is-active .book-spine {
+    /* Assombrit un peu la tranche parce qu'elle tourne */
+    filter: brightness(0.8);
+}
+
+
+/* 2. OUVERT (Couverture tournée) */
+.book-container.is-open {
+    width: 600px; /* Place pour Cover (gauche) + Pages (droite) */
+}
+
+.book-container.is-open .book {
+    /* Déplace le livre vers la droite pour que l'axe du milieu soit centré */
+    transform: translateX(300px) rotateY(0deg) translateZ(0px);
+}
+
+.book-container.is-open .book-cover {
+    /* La couverture s'ouvre complètement comme une porte */
+    transform: rotateY(-180deg) translateZ(30px); /* -180 degre de sa position de base */
+}
+
+
+/* UTILITAIRES / DECOS */
+.cover-title {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    padding: 10px 20px;
+    border: 2px solid rgba(255,255,255,0.4);
+}
+
+.view-project-btn {
+    margin-top: auto;
+    padding: 12px 24px;
+    background-color: #111;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.8rem;
+    transition: background 0.3s, transform 0.3s;
+    align-self: flex-start;
+}
+.view-project-btn:hover { background-color: #333; transform: translateX(5px); }

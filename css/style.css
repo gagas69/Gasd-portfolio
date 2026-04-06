@@ -1,0 +1,1129 @@
+/* =============================================
+   GasdProduction — Design System
+   Ultra-minimaliste, Premium, Apple/Bento
+   ============================================= */
+
+/* === FONTS === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* === CSS VARIABLES === */
+:root {
+  /* --- Couleurs --- */
+  --color-bg:            #F5F5F7;  /* Fond Apple gris très clair */
+  --color-bg-white:      #FFFFFF;
+  --color-text:          #1D1D1F;  /* Texte Apple noir */
+  --color-text-secondary:#6E6E73;  /* Texte secondaire gris */
+  --color-border:        rgba(0, 0, 0, 0.08);
+
+  /* --- Couleurs des cartes (remplaçables par images/vidéos) --- */
+  --card-1: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+  --card-2: linear-gradient(145deg, #f093fb 0%, #f5576c 100%);
+  --card-3: linear-gradient(145deg, #4facfe 0%, #00d2ff 100%);
+  --card-4: linear-gradient(145deg, #11998e 0%, #38ef7d 100%);
+  --card-5: linear-gradient(145deg, #fc4a1a 0%, #f7b733 100%);
+  --card-6: linear-gradient(145deg, #a18cd1 0%, #fbc2eb 100%);
+  --card-7: linear-gradient(145deg, #fccb90 0%, #d57eeb 100%);
+
+  /* --- Typographie --- */
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* --- Border radius --- */
+  --radius-sm:   12px;
+  --radius-md:   20px;
+  --radius-lg:   28px;
+  --radius-pill: 100px;
+
+  /* --- Transitions --- */
+  --t-fast:   0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --t-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --t-spring: 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* === RESET === */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* =============================================
+   NAVIGATION
+   ============================================= */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(245, 245, 247, 0.82);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--color-border);
+  transition: box-shadow var(--t-fast);
+}
+
+/* Logo dans la nav */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo img {
+  height: 26px;
+  transition: opacity var(--t-fast);
+}
+.nav-logo img:hover { opacity: 0.7; }
+
+.nav-logo-text {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+/* Liens de navigation */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: color var(--t-fast);
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--color-text); }
+
+/* Bouton CTA dans la nav */
+.nav-cta {
+  background: var(--color-text) !important;
+  color: var(--color-bg) !important;
+  padding: 9px 20px;
+  border-radius: var(--radius-pill);
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  transition: opacity var(--t-fast), transform var(--t-fast) !important;
+}
+.nav-cta:hover { opacity: 0.8 !important; transform: translateY(-1px) !important; }
+
+/* Hamburger (mobile) */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: var(--t-smooth);
+}
+
+/* =============================================
+   HERO SECTION (index.html)
+   ============================================= */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Aligne depuis le haut pour que les cartes remplissent le bas */
+  justify-content: flex-start;
+  text-align: center;
+  padding: 110px 24px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Eyebrow / étiquette au-dessus du logo */
+.hero-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.2s;
+}
+
+/* Grand logo centré dans le hero */
+.hero-logo {
+  height: 120px;
+  width: auto;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.35s;
+}
+
+/* Titre / sous-texte resserré */
+.hero-title {
+  font-size: clamp(22px, 3.5vw, 44px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--color-text);
+  max-width: 600px;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.5s;
+}
+
+/* Sous-titre */
+.hero-subtitle {
+  font-size: clamp(15px, 1.8vw, 19px);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  max-width: 480px;
+  line-height: 1.65;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.6s;
+}
+
+/* =============================================
+   BOUTONS CTA
+   ============================================= */
+.cta-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.8s;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 30px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--t-smooth);
+  white-space: nowrap;
+}
+
+/* Bouton plein */
+.btn-primary {
+  background: var(--color-text);
+  color: var(--color-bg);
+  border-color: var(--color-text);
+}
+.btn-primary:hover {
+  background: #2a2a2a;
+  border-color: #2a2a2a;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* Bouton contouré */
+.btn-outline {
+  background: transparent;
+  color: var(--color-text);
+  border-color: rgba(0, 0, 0, 0.22);
+}
+.btn-outline:hover {
+  border-color: var(--color-text);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+}
+
+/* =============================================
+   CARD FAN (éventail de cartes)
+   ============================================= */
+.card-fan-container {
+  width: 100%;
+  /* Prend tout l'espace restant sous les boutons */
+  flex: 1;
+  min-height: 0;
+  padding-top: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  opacity: 0;
+  animation: fadeInUp 0.9s ease forwards 1.0s;
+  perspective: 1400px;
+}
+
+.card-fan {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+/* ---- Carte de base ---- */
+.card {
+  position: absolute;
+  top: 100%; /* Par défaut, sous l'écran */
+  width: 70px;
+  height: 100px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transform-origin: bottom center;
+  transition: transform var(--t-spring), box-shadow var(--t-smooth), z-index 0s;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Overlay dégradé en bas pour lisibilité du label (désactivé) */
+.card::after {
+  display: none;
+}
+
+/* Contenu à l'intérieur de la carte (masqué) */
+.card-inner {
+  display: none;
+}
+
+.card-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.01em;
+}
+
+/* ---- Positions des cartes (éventail) ---- */
+.card:nth-child(1) {
+  background: var(--card-1);
+  transform: rotate(-22deg) translate(-180px, -25px) scale(0.74);
+  z-index: 1;
+  box-shadow: -4px 8px 30px rgba(102, 126, 234, 0.4);
+}
+.card:nth-child(2) {
+  background: var(--card-2);
+  transform: rotate(-13deg) translate(-110px, -35px) scale(0.84);
+  z-index: 2;
+  box-shadow: -3px 7px 25px rgba(245, 87, 108, 0.35);
+}
+.card:nth-child(3) {
+  background: var(--card-3);
+  transform: rotate(-5deg) translate(-50px, -55px) scale(0.92);
+  z-index: 3;
+  box-shadow: -2px 6px 20px rgba(79, 172, 254, 0.35);
+}
+.card:nth-child(4) {
+  background: var(--card-4);
+  transform: rotate(0deg) translate(0px, -70px) scale(1.05);
+  z-index: 4;
+  box-shadow: 0 12px 45px rgba(17, 153, 142, 0.35);
+}
+.card:nth-child(5) {
+  background: var(--card-5);
+  transform: rotate(5deg) translate(50px, -55px) scale(0.92);
+  z-index: 3;
+  box-shadow: 2px 6px 20px rgba(252, 74, 26, 0.3);
+}
+.card:nth-child(6) {
+  background: var(--card-6);
+  transform: rotate(13deg) translate(110px, -35px) scale(0.84);
+  z-index: 2;
+  box-shadow: 3px 7px 25px rgba(161, 140, 209, 0.35);
+}
+.card:nth-child(7) {
+  background: var(--card-7);
+  transform: rotate(22deg) translate(180px, -25px) scale(0.74);
+  z-index: 1;
+  box-shadow: 4px 8px 30px rgba(252, 203, 144, 0.4);
+}
+
+/* ---- Hover sur les cartes ---- */
+.card:hover { box-shadow: 0 16px 50px rgba(0, 0, 0, 0.22) !important; z-index: 10 !important; }
+.card:nth-child(1):hover { transform: rotate(-17deg) translate(-175px, -65px) scale(0.84); }
+.card:nth-child(2):hover { transform: rotate(-9deg)  translate(-105px, -75px) scale(0.95); }
+.card:nth-child(3):hover { transform: rotate(-2deg)  translate(-47px, -95px)  scale(1.02); }
+.card:nth-child(4):hover { transform: rotate(0deg)   translate(0px, -115px)   scale(1.15); }
+.card:nth-child(5):hover { transform: rotate(2deg)   translate(47px, -95px)   scale(1.02); }
+.card:nth-child(6):hover { transform: rotate(9deg)   translate(105px, -75px)  scale(0.95); }
+.card:nth-child(7):hover { transform: rotate(17deg)  translate(175px, -65px)  scale(0.84); }
+
+/* =============================================
+   SECTION GÉNÉRIQUE & TITRES
+   ============================================= */
+.section { padding: 100px 48px; }
+
+.section-header {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* =============================================
+   PAGE HERO (Créations, À Propos)
+   ============================================= */
+.page-hero {
+  padding: 150px 48px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-hero-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: 16px;
+}
+
+.page-hero-title {
+  font-size: clamp(40px, 6.5vw, 80px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  margin-bottom: 20px;
+}
+
+.page-hero-subtitle {
+  font-size: 18px;
+  color: var(--color-text-secondary);
+  max-width: 520px;
+  line-height: 1.65;
+}
+
+/* =============================================
+   PAGE CRÉATIONS — Dossiers Apple style
+   ============================================= */
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 70px 40px;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+.folder-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.folder-wrapper {
+  position: relative;
+  width: 220px;
+  height: 150px;
+  margin-bottom: 24px;
+}
+
+/* Base du dossier (fond gris derrière les photos) */
+.folder-back {
+  position: absolute;
+  inset: 0;
+  background: #E8E8ED;
+  border-radius: 12px;
+  z-index: 1;
+}
+
+/* Zone des photos qui dépassent */
+.folder-photos {
+  position: absolute;
+  top: -30px; left: 0; right: 0;
+  height: 140px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.folder-photo {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  border: 4px solid #FFFFFF;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.folder-photo.left   { transform: rotate(-18deg) translateX(-35px) translateY(10px); z-index: 2; }
+.folder-photo.right  { transform: rotate(18deg) translateX(35px) translateY(10px); z-index: 2; }
+.folder-photo.center { transform: rotate(0) translateY(-10px); z-index: 3; }
+
+/* Effet au survol du dossier : le contenu jaillit (plus subtilement) */
+.folder-card:hover .folder-photo { box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+.folder-card:hover .folder-photo.left   { transform: rotate(-18deg) translateX(-65px) translateY(-15px) scale(1.1); }
+.folder-card:hover .folder-photo.right  { transform: rotate(18deg) translateX(65px) translateY(-15px) scale(1.1); }
+.folder-card:hover .folder-photo.center { transform: rotate(0) translateY(-40px) scale(1.15); z-index: 6; }
+.folder-card:hover .folder-front        { transform: translateY(4px) scale(0.98); opacity: 0.95; }
+
+/* Devant du dossier transparent blanc */
+.folder-front {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 0 14px 14px 14px;
+  z-index: 4;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06), inset 0 1px 1px rgba(255,255,255,1);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* L'onglet (tab) en haut à gauche */
+.folder-front::before {
+  content: '';
+  position: absolute;
+  top: -16px; left: 0;
+  width: 80px; height: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: inherit;
+  -webkit-backdrop-filter: inherit;
+  border-radius: 12px 12px 0 0;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,1);
+}
+
+/* Lignes en relief comme sur l'image */
+.folder-lines {
+  position: absolute;
+  bottom: 16px; left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.folder-line {
+  width: 100%; height: 4px;
+  background: rgba(0,0,0,0.03);
+  border-radius: 4px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.04), 0 1px 0 rgba(255,255,255,1);
+}
+
+/* Autocollants décoratifs (stickers) */
+.folder-sticker {
+  position: absolute;
+  background: #fff;
+  padding: 4px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-size: 24px;
+  z-index: 5;
+  display: flex; align-items: center; justify-content: center;
+}
+.folder-sticker.stamp {
+  top: 25px; left: 20px;
+  border: 2px dashed #eee;
+  padding: 6px;
+  border-radius: 4px;
+  transform: rotate(-10deg);
+}
+.folder-sticker.torii {
+  /* No white bg for torii, just the emoji */
+  bottom: 35px; right: 20px;
+  transform: rotate(8deg);
+  background: transparent;
+  box-shadow: none;
+  font-size: 32px;
+}
+.folder-sticker.star {
+  top: 15px; right: 25px;
+  transform: rotate(15deg);
+  font-size: 20px;
+  padding: 6px;
+  border-radius: 50%;
+}
+.folder-sticker.record {
+  bottom: 30px; left: 30px;
+  transform: rotate(-5deg);
+  background: transparent;
+  box-shadow: none;
+  font-size: 28px;
+}
+
+/* Infos sous le dossier */
+.folder-title {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: 8px;
+  transition: transform 0.3s ease;
+}
+
+.folder-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  background: rgba(0,0,0,0.06);
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 100px;
+  letter-spacing: 0.01em;
+}
+
+/* =============================================
+   PAGE CRÉATIONS — MODAL (Dossier Ouvert)
+   ============================================= */
+.project-modal {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.project-modal.active { opacity: 1; visibility: visible; }
+
+.modal-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: zoom-out;
+}
+
+.modal-content {
+  position: relative; z-index: 10;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 24px;
+  width: 100%; max-width: 900px;
+  max-height: 90vh;
+  padding: 40px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.25);
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: thinner;
+  transform: scale(0.95) translateY(20px);
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1) 0.1s;
+}
+.project-modal.active .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.modal-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.modal-header h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.modal-close {
+  background: var(--color-bg-white);
+  color: var(--color-text);
+  border: 1px solid rgba(0,0,0,0.1);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+  flex-shrink: 0;
+  margin-left: 20px;
+}
+.modal-close:hover { background: #f0f0f0; transform: scale(1.05); }
+
+.modal-body {
+  flex: 1;
+}
+
+/* Affichage interne : Grille de sélection de projets */
+.project-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.project-thumb-card {
+  text-decoration: none;
+  display: flex; flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.project-thumb-card:hover { transform: translateY(-4px); }
+
+.thumb-image {
+  width: 100%; aspect-ratio: 16/9;
+  background: #000;
+  border-radius: 12px; margin-bottom: 12px;
+  background-size: cover; background-position: center;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.thumb-image::after {
+  content: '▶'; /* ou un svg play */
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 24px;
+  background: rgba(0,0,0,0.3);
+  opacity: 0; transition: opacity 0.3s;
+}
+.project-thumb-card:hover .thumb-image::after { opacity: 1; }
+
+.thumb-title {
+  font-size: 16px; font-weight: 700; color: var(--color-text);
+  margin-bottom: 4px;
+}
+.thumb-tag {
+  font-size: 13px; font-weight: 600; color: var(--color-text-secondary);
+}
+
+/* =============================================
+   PAGE À PROPOS
+   ============================================= */
+.about-section {
+  padding: 0 48px 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-lead {
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-text);
+  max-width: 680px;
+  margin-bottom: 80px;
+}
+
+/* Grille bento about */
+.about-bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 20px;
+}
+
+.about-block {
+  background: var(--color-bg-white);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: transform var(--t-smooth), box-shadow var(--t-smooth);
+}
+.about-block:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.08);
+}
+
+/* Blocs spéciaux */
+.about-block.wide  { grid-column: span 2; }
+.about-block.tall  { grid-row: span 2; }
+.about-block.accent {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.about-block-icon {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.about-block h3 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: 14px;
+}
+.about-block.accent h3 { color: rgba(255,255,255,0.5); }
+
+.about-block h2 {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+.about-block.accent h2 { color: var(--color-bg); }
+
+.about-block p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+.about-block.accent p { color: rgba(255,255,255,0.65); }
+
+.about-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.skill-tag {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+  background: var(--color-text);
+  color: var(--color-bg);
+  padding: 64px 48px 40px;
+}
+
+.footer-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+
+.footer-brand img {
+  height: 28px;
+  margin-bottom: 12px;
+}
+
+.footer-brand p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  max-width: 240px;
+  line-height: 1.6;
+}
+
+.footer-nav h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+}
+
+.footer-nav ul { display: flex; flex-direction: column; gap: 10px; }
+
+.footer-nav a {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color var(--t-fast);
+}
+.footer-nav a:hover { color: #fff; }
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* =============================================
+   ANIMATIONS
+   ============================================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fluidWord {
+  from { transform: translateY(110%) rotate(3deg); opacity: 0; }
+  to   { transform: translateY(0) rotate(0deg); opacity: 1; }
+}
+
+/* Pour le scroll reveal (JS) */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Délais en cascade pour les grilles */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* =============================================
+   RESPONSIVE — Tablette & Mobile
+   ============================================= */
+@media (max-width: 1024px) {
+  .about-bento { grid-template-columns: 1fr 1fr; }
+  .about-block.wide { grid-column: span 2; }
+  .creation-card.featured { grid-column: span 1; }
+}
+
+@media (max-width: 768px) {
+  /* Nav */
+  .nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+
+  /* Hero */
+  .hero { padding: 100px 20px 0; }
+  .hero-title { font-size: clamp(34px, 9vw, 48px); }
+
+  /* CTA buttons en colonne */
+  .cta-group { flex-direction: column; width: 100%; gap: 10px; }
+  .btn { width: 100%; justify-content: center; }
+
+  /* Éventail réduit */
+  .card-fan-container { height: 340px; }
+  .card { width: 180px; height: 250px; }
+  .card:nth-child(1) { transform: rotate(-22deg) translate(-320px, 55px) scale(0.7); }
+  .card:nth-child(2) { transform: rotate(-13deg) translate(-175px, 28px) scale(0.8); }
+  .card:nth-child(3) { transform: rotate(-5deg)  translate(-85px,  10px) scale(0.9); }
+  .card:nth-child(4) { transform: rotate(0deg)   translate(0px,    0px)  scale(1);   }
+  .card:nth-child(5) { transform: rotate(5deg)   translate(85px,   10px) scale(0.9); }
+  .card:nth-child(6) { transform: rotate(13deg)  translate(175px,  28px) scale(0.8); }
+  .card:nth-child(7) { transform: rotate(22deg)  translate(320px,  55px) scale(0.7); }
+
+  /* Sections */
+  .section { padding: 70px 24px; }
+  .page-hero { padding: 120px 24px 60px; }
+  .about-section { padding: 0 24px 70px; }
+  .about-bento { grid-template-columns: 1fr; }
+  .about-block.wide { grid-column: span 1; }
+
+  /* Footer */
+  .footer { padding: 48px 24px 32px; }
+  .footer-top { flex-direction: column; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  /* Cacher les 2 cartes extrêmes sur très petit écran */
+  .card:nth-child(1), .card:nth-child(7) { display: none; }
+  .card:nth-child(2) { transform: rotate(-16deg) translate(-220px, 32px) scale(0.75); }
+  .card:nth-child(6) { transform: rotate(16deg)  translate(220px,  32px) scale(0.75); }
+}
+
+
+
+/* =============================================
+   EFFET EXPLOSION D'IMAGES (HERO)
+   ============================================= */
+.hero-floating-images {
+  position: absolute; inset: 0; z-index: 0;
+  overflow: hidden; pointer-events: none; /* Ne bloque pas le clic ! */
+}
+.floating-img {
+  position: absolute;
+  object-fit: contain;
+  opacity: 0;
+  
+  /* Pour rendre l'élément interactif même sous pointer-events:none */
+  pointer-events: auto;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-drag: none;
+
+  /* Effet de départ : petit et au milieu verticalement environ */
+  transform: scale(0.2) translate3d(0, 0, 0) rotate(0deg); 
+  animation: explodeImg 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); /* Ombre propre au PNG transparent */
+}
+
+@keyframes explodeImg {
+  0% { opacity: 0; transform: scale(0.2) rotate(0deg); }
+  100% { opacity: 1; transform: scale(1) rotate(var(--rot)); }
+}
+
+/* =============================================
+   CUSTOM OVERLAY DOSSIER DA (SCRAPBOOK)
+   ============================================= */
+/* L'overlay plein écran qui fade-in */
+.da-custom-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  background: #A9E18B; /* Vert pomme Dwello */
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s;
+}
+.da-custom-overlay.active { opacity: 1; visibility: visible; }
+
+/* Le backdrop sombre transparent (optionnel, on garde le vert opaque) */
+.da-backdrop { position: absolute; inset: 0; cursor: pointer; }
+
+/* La Scène 3D */
+.da-scrapbook-scene {
+  position: relative; width: 500px; height: 600px;
+  perspective: 1500px; z-index: 10;
+  transform: scale(0.8);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.da-custom-overlay.active .da-scrapbook-scene { transform: scale(1); }
+
+@media (max-width: 768px) {
+  .da-scrapbook-scene { width: 90vw; height: 110vw; left: -10vw; }
+}
+
+/* Le Container Carnet (Sert de repère pour l'ouverture) */
+.da-book { position: absolute; inset: 0; transform-style: preserve-3d; }
+
+/* ======== INTERIEUR DU DOSSIER (Contenu) ======== */
+.da-book-inside {
+  position: absolute; inset: 0;
+  background: #fdfdfd; border-radius: 6px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  display: flex; flex-direction: column; overflow: hidden;
+  /* L'intérieur a un motif à carreaux (grid) */
+  background-image: 
+    linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+  /* Marge rouge gauche */
+  border-left: 2px solid rgba(255,0,0,0.2); margin-left:30px;
+}
+
+.da-book-header { padding: 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed rgba(0,0,0,0.06); }
+.da-inside-title { font-size: 24px; font-weight: 800; color: #1a3c20; font-family: 'Playfair Display', serif;}
+.da-close-btn { 
+  background: #111; color: white; border: none; padding: 10px 20px; border-radius: 100px;
+  font-weight: 600; cursor: pointer; transition: 0.2s;
+}
+.da-close-btn:hover { background: #333; transform: scale(1.05); }
+
+.da-book-body { padding: 30px; flex: 1; overflow-y: auto; }
+
+/* ======== COUVERTURE DU DOSSIER (Vert Forêt) ======== */
+.da-book-cover {
+  position: absolute; inset: 0; z-index: 20;
+  transform-style: preserve-3d; transform-origin: left center;
+  transition: transform 0.85s cubic-bezier(0.34, 1.2, 0.64, 1);
+  cursor: pointer;
+}
+/* Classe déclenchant l'ouverture (Ajoutée via JS) */
+.da-book-cover.opened { transform: rotateY(-130deg); cursor: default; }
+.da-book-cover:hover:not(.opened) { transform: rotateY(-5deg) scale(1.02); }
+
+/* La feuille de papier de fond (Blanche à lignes qui déborde) */
+.da-paper-bg {
+  position: absolute; top: 10px; bottom: -10px; left: -10px; right: -25px;
+  background: #fff; border-radius: 4px; z-index: -1;
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.1);
+  background-image: repeating-linear-gradient(transparent, transparent 29px, #e1eaf0 30px);
+}
+/* Trous de spirales sur la gauche du papier */
+.da-paper-bg::before {
+  content:''; position: absolute; left: 8px; top: 20px; bottom: 20px; width: 12px;
+  background-image: radial-gradient(circle at center, #A9E18B 4px, transparent 5px);
+  background-size: 100% 30px;
+}
+
+/* La pochette vert foncé (Main Cover) */
+.da-cover-main {
+  position: absolute; inset: 0; background: #1a3c20; /* Vert foret Dwello */
+  border-radius: 6px; box-shadow: 5px 10px 30px rgba(0,0,0,0.15);
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 40px; color: #A9E18B; overflow: hidden;
+  /* Masque l'intérieur si pivoté */
+  backface-visibility: hidden;
+}
+
+/* =============================================
+   DÉTAILS DU DESIGN (Typo, Stickers, Tabs)
+   ============================================= */
+
+/* Typographies */
+.da-top-title, .da-bottom-title {
+  font-size: 14px; font-weight: 600; letter-spacing: 0.2em; text-align: center; color: #2c5934;
+}
+.da-top-title { margin-top: -10px; }
+.da-bottom-title { margin-bottom: -10px; }
+
+.da-main-title {
+  text-align: center; color: #A9E18B; flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 20px; position: relative;
+}
+.da-serif { font-family: 'Playfair Display', serif; font-size: clamp(48px, 11vw, 85px); line-height: 0.9; margin: 0; font-weight: 800; letter-spacing: -0.02em; }
+.flex-title { position: relative; display: inline-block; }
+
+/* Sticker "PROJETS" */
+.da-sticker-projet {
+  position: absolute; right: -20px; bottom: 0;
+  background: #F9E993; color: #111; padding: 4px 10px; border-radius: 2px;
+  font-family: var(--font); font-size: 16px; font-weight: 900; line-height: 1; transform: rotate(-8deg); box-shadow: 2px 2px 10px rgba(0,0,0,0.2); text-align: center;
+}
+
+/* Intercalaires (Tabs) */
+.da-tabs { position: absolute; right: -30px; top: 0; bottom: 0; z-index: -2; pointer-events: none; }
+.da-tab {
+  position: absolute; right: 0; padding: 10px 15px 10px 20px;
+  font-size: 12px; font-weight: 700; border-radius: 0 8px 8px 0;
+  transform: rotate(90deg); transform-origin: left top; box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+  white-space: nowrap;
+}
+
+/* POST-IT & BINDER CLIP */
+.da-postit-area { position: absolute; top: 40px; left: 40px; z-index: 10; }
+
+.da-postit {
+  background: #F9E993; /* Jaune pastel */
+  width: 170px; height: 150px; border-radius: 4px;
+  box-shadow: 2px 6px 15px rgba(0,0,0,0.2), inset 0 0 20px rgba(255,200,0,0.1);
+  padding: 20px; padding-top: 40px; transform: rotate(-3deg); position: relative;
+}
+.da-postit h2 { color: #111; font-size: 20px; font-weight: 800; line-height: 1.1; margin:0; }
+
+.da-postit-sticker {
+  position: absolute; right: -35px; bottom: 15px;
+  background: #9DC9E5; color: #111;
+  width: 80px; height: 80px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  font-size: 11px; font-weight: 900; line-height: 1.1; transform: rotate(12deg);
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.15), inset 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* Binder Clip (La pince noire) */
+.da-binder-clip { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); z-index: 15; width: 60px; height: 50px; }
+.da-binder-body { width: 40px; height: 18px; background: #222; border-radius: 2px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.3); position: relative; z-index: 2; border-bottom: 3px solid #000; }
+.da-binder-handle { width: 30px; height: 25px; border: 3px solid #ccc; border-radius: 120px 120px 0 0; position: absolute; left: 50%; transform: translateX(-50%); z-index: 1; }
+.da-binder-handle.up { top: -20px; }

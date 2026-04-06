@@ -1,0 +1,6 @@
+.DS_Store
+node_modules/
+.temp/
+*.log
+.gemini/
+asset/dossier da adamo/BonGusto - Pasta Con Sarde (Da Adamo).mov

@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin CMS — GasdProduction</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ========================
+       LAYOUT
+    ======================== */
+    body {
+      background: var(--color-bg);
+      min-height: 100vh;
+      padding: 40px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .admin-logo {
+      height: 36px;
+      margin-bottom: 32px;
+      filter: invert(1);
+    }
+
+    .admin-wrapper {
+      width: 100%;
+      max-width: 780px;
+    }
+
+    /* ========================
+       TABS
+    ======================== */
+    .admin-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .admin-tab {
+      flex: 1;
+      padding: 14px 20px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid rgba(0,0,0,0.1);
+      background: white;
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all var(--t-fast);
+      text-align: center;
+    }
+    .admin-tab:hover { border-color: var(--color-text); color: var(--color-text); }
+    .admin-tab.active {
+      background: var(--color-text);
+      color: white;
+      border-color: var(--color-text);
+    }
+
+    /* ========================
+       CARDS
+    ======================== */
+    .admin-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    }
+
+    .admin-card h2 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .admin-card .subtitle {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      margin-bottom: 32px;
+    }
+
+    /* ========================
+       FORM
+    ======================== */
+    .form-group { margin-bottom: 22px; }
+
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--color-text-secondary);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid rgba(0,0,0,0.1);
+      font-family: var(--font);
+      font-size: 15px;
+      background: #fafafa;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      color: var(--color-text);
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--color-text);
+      background: white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 90px;
+      line-height: 1.6;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Type switcher for photos (multi-input) */
+    .photos-list { display: flex; flex-direction: column; gap: 10px; }
+    .photo-input-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .photo-input-row .form-control { flex: 1; }
+    .btn-rm-photo {
+      background: none;
+      border: 1.5px solid rgba(0,0,0,0.12);
+      border-radius: 50%;
+      width: 36px; height: 36px;
+      font-size: 16px;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      flex-shrink: 0;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-rm-photo:hover { border-color: #e00; color: #e00; }
+    .btn-add-photo {
+      margin-top: 4px;
+      background: none;
+      border: 1.5px dashed rgba(0,0,0,0.15);
+      border-radius: var(--radius-sm);
+      width: 100%;
+      padding: 11px;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-add-photo:hover { border-color: var(--color-text); color: var(--color-text); }
+
+    /* Color pickers side by side */
+    .color-row { display: flex; gap: 12px; }
+    .color-row .form-control { height: 50px; padding: 4px 8px; cursor: pointer; }
+
+    /* Section separator  */
+    .form-section-sep {
+      border: none;
+      border-top: 1.5px solid rgba(0,0,0,0.06);
+      margin: 28px 0;
+    }
+
+    /* Folder type notice */
+    .type-notice {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 28px;
+    }
+    .type-notice.video { background: rgba(79, 172, 254, 0.1); color: #0a6ebd; }
+    .type-notice.da    { background: rgba(161, 140, 209, 0.12); color: #6b44c0; }
+
+    /* CTA button  */
+    .admin-btn {
+      width: 100%;
+      height: 52px;
+      border-radius: 14px;
+      font-size: 16px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    /* Status message */
+    #statusMsg {
+      margin-top: 18px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      padding: 13px;
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+
+    /* ========================
+       MANAGE TAB — Content list
+    ======================== */
+    .manage-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .manage-folder-btn {
+      padding: 8px 16px;
+      border-radius: 100px;
+      border: 1.5px solid rgba(0,0,0,0.1);
+      background: white;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      transition: all var(--t-fast);
+    }
+    .manage-folder-btn.active, .manage-folder-btn:hover {
+      background: var(--color-text); color: white; border-color: var(--color-text);
+    }
+
+    .content-list { display: flex; flex-direction: column; gap: 14px; }
+
+    .content-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 18px;
+      background: #fafafa;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid rgba(0,0,0,0.07);
+      transition: border-color 0.2s;
+    }
+    .content-item:hover { border-color: rgba(0,0,0,0.15); }
+
+    .content-thumb {
+      width: 64px;
+      height: 48px;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .content-info { flex: 1; min-width: 0; }
+    .content-info strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .content-info span {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+    }
+
+    .content-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+    .badge {
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(0,0,0,0.06);
+      color: var(--color-text-secondary);
+    }
+    .badge.video { background: rgba(79,172,254,0.15); color: #0a6ebd; }
+    .badge.da    { background: rgba(161,140,209,0.15); color: #6b44c0; }
+
+    .btn-delete {
+      background: none;
+      border: 1.5px solid rgba(220,0,0,0.2);
+      color: #c00;
+      border-radius: var(--radius-sm);
+      padding: 8px 14px;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .btn-delete:hover { background: rgba(220,0,0,0.08); border-color: #c00; }
+
+    .manage-empty {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--color-text-secondary);
+      font-size: 14px;
+    }
+
+    #manageLoading {
+      text-align: center;
+      padding: 40px;
+      color: var(--color-text-secondary);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ========================
+       HIDDEN PANEL
+    ======================== */
+    .admin-panel { display: none; }
+    .admin-panel.active { display: block; }
+
+    /* ========================
+       RESPONSIVE
+    ======================== */
+    @media (max-width: 560px) {
+      .admin-card { padding: 28px 20px; }
+      .form-row { grid-template-columns: 1fr; }
+      body { padding: 24px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <img src="asset/logoblanc.png" alt="Logo GasdProduction" class="admin-logo" />
+
+  <div class="admin-wrapper">
+
+    <!-- ======= TABS ======= -->
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchTab('add')">➕ Ajouter un projet</button>
+      <button class="admin-tab" onclick="switchTab('manage')">🗂 Gérer le contenu</button>
+    </div>
+
+    <!-- ============================================
+         PANEL 1 — AJOUTER UN PROJET
+    ============================================ -->
+    <div id="panel-add" class="admin-panel active">
+      <div class="admin-card">
+        <h2>Nouveau projet</h2>
+        <p class="subtitle">Le formulaire s'adapte automatiquement au type de dossier choisi.</p>
+
+        <!-- Dossier cible -->
+        <div class="form-group">
+          <label>Dossier Cible</label>
+          <select id="folder" class="form-control" onchange="onFolderChange()">
+            <option value="da">Direction Artistique</option>
+            <option value="pubs">Publicité</option>
+            <option value="mariage">Mariage</option>
+          </select>
+        </div>
+
+        <!-- ---- Formulaire DIRECTION ARTISTIQUE ---- -->
+        <div id="form-da">
+          <div class="type-notice da">🎨 Mode Direction Artistique — Photos, texte, liens</div>
+
+          <div class="form-group">
+            <label>Titre du projet</label>
+            <input type="text" id="da-titre" class="form-control" placeholder="Ex: Campagne Printemps 2025" />
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="da-description" class="form-control" placeholder="Décris le projet, le concept, l'intention artistique..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Tag / Client</label>
+            <input type="text" id="da-tag" class="form-control" placeholder="Ex: Nike, Auto-produit..." />
+          </div>
+
+          <hr class="form-section-sep" />
+
+          <div class="form-group">
+            <label>Photos (URLs — une par champ)</label>
+            <div class="photos-list" id="photos-list">
+              <div class="photo-input-row">
+                <input type="url" class="form-control da-photo-url" placeholder="https://... (image hébergée ou Firebase Storage)" />
+                <button class="btn-rm-photo" onclick="removePhotoInput(this)" title="Supprimer">✕</button>
+              </div>
+            </div>
+            <button class="btn-add-photo" onclick="addPhotoInput()">+ Ajouter une photo</button>
+          </div>
+
+          <div class="form-group">
+            <label>Lien externe (site, Behance, etc.) — optionnel</label>
+            <input type="url" id="da-lien" class="form-control" placeholder="https://..." />
+          </div>
+
+          <div class="form-group">
+            <label>Couleur du dégradé (miniature si pas de photo)</label>
+            <div class="color-row">
+              <input type="color" id="da-couleur1" class="form-control" value="#a18cd1" />
+              <input type="color" id="da-couleur2" class="form-control" value="#fbc2eb" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ---- Formulaire VIDÉO (Pub / Mariage) ---- -->
+        <div id="form-video" style="display:none;">
+          <div class="type-notice video" id="video-notice">🎬 Mode Vidéo — YouTube / Lien</div>
+
+          <div class="form-group">
+            <label>Titre de la vidéo</label>
+            <input type="text" id="vid-titre" class="form-control" placeholder="Ex: Macarena" />
+          </div>
+
+          <div class="form-group">
+            <label>Artiste / Marque (Tag)</label>
+            <input type="text" id="vid-artiste" class="form-control" placeholder="Ex: Damso" />
+          </div>
+
+          <div class="form-group">
+            <label>Lien global (YouTube ou site)</label>
+            <input type="url" id="vid-lien" class="form-control" placeholder="https://youtube.com/watch?v=..." />
+          </div>
+
+          <div class="form-group">
+            <label>Couleur du dégradé (Miniature si pas de thumbnail YouTube)</label>
+            <div class="color-row">
+              <input type="color" id="vid-couleur1" class="form-control" value="#f093fb" />
+              <input type="color" id="vid-couleur2" class="form-control" value="#f5576c" />
+            </div>
+          </div>
+        </div>
+
+        <button id="submitBtn" class="btn btn-primary admin-btn" onclick="submitProject()">Mettre en ligne 🚀</button>
+        <div id="statusMsg"></div>
+      </div>
+    </div>
+
+    <!-- ============================================
+         PANEL 2 — GÉRER LE CONTENU
+    ============================================ -->
+    <div id="panel-manage" class="admin-panel">
+      <div class="admin-card">
+        <h2>Gérer le contenu</h2>
+        <p class="subtitle">Consulte et supprime les projets publiés par dossier.</p>
+
+        <div class="manage-tabs">
+          <button class="manage-folder-btn active" onclick="loadManageFolder('da', this)">🎨 Direction Artistique</button>
+          <button class="manage-folder-btn" onclick="loadManageFolder('pubs', this)">📺 Publicité</button>
+          <button class="manage-folder-btn" onclick="loadManageFolder('mariage', this)">💍 Mariage</button>
+        </div>
+
+        <div id="manageLoading" style="display:none;">Chargement...</div>
+        <div class="content-list" id="contentList"></div>
+      </div>
+    </div>
+
+  </div><!-- /admin-wrapper -->
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      getDocs,
+      deleteDoc,
+      doc,
+      query,
+      orderBy,
+      where
+    } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAGgdg-NMTgWYuoVvGjYpCKzxiH8AkcD_M",
+      authDomain: "gasd-c41ca.firebaseapp.com",
+      projectId: "gasd-c41ca",
+      storageBucket: "gasd-c41ca.firebasestorage.app",
+      messagingSenderId: "606280464457",
+      appId: "1:606280464457:web:d2372ab12f4ad179a56798",
+      measurementId: "G-DWG90Y3W1H"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Expose to global scope for onclick handlers
+    window._db = db;
+    window._firestore = { collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, where };
+
+    // ---- SUBMIT ----
+    window.submitProject = async function() {
+      const folder = document.getElementById('folder').value;
+      const msg = document.getElementById('statusMsg');
+      msg.style.display = 'block';
+      msg.style.color = '#333';
+      msg.style.background = '#f9f9f9';
+      msg.textContent = 'Envoi en cours...';
+
+      try {
+        let docData = { folder, dateAdded: Date.now() };
+
+        if (folder === 'da') {
+          const titre = document.getElementById('da-titre').value.trim();
+          const description = document.getElementById('da-description').value.trim();
+          const tag = document.getElementById('da-tag').value.trim();
+          const lien = document.getElementById('da-lien').value.trim();
+          const couleur1 = document.getElementById('da-couleur1').value;
+          const couleur2 = document.getElementById('da-couleur2').value;
+          const photoInputs = document.querySelectorAll('.da-photo-url');
+          const photos = Array.from(photoInputs).map(i => i.value.trim()).filter(Boolean);
+
+          if (!titre) {
+            showError(msg, '❌ Le titre est requis.'); return;
+          }
+          docData = { ...docData, type: 'da', titre, description, tag, lien, couleur1, couleur2, photos };
+
+        } else {
+          const titre = document.getElementById('vid-titre').value.trim();
+          const artiste = document.getElementById('vid-artiste').value.trim();
+          const lien = document.getElementById('vid-lien').value.trim();
+          const couleur1 = document.getElementById('vid-couleur1').value;
+          const couleur2 = document.getElementById('vid-couleur2').value;
+
+          if (!titre || !lien) {
+            showError(msg, '❌ Titre et lien sont requis.'); return;
+          }
+
+          let youtubeId = '';
+          try {
+            const urlObj = new URL(lien);
+            if (urlObj.hostname.includes('youtube.com')) youtubeId = urlObj.searchParams.get('v') || '';
+            if (urlObj.hostname.includes('youtu.be')) youtubeId = urlObj.pathname.slice(1) || '';
+          } catch(e) {}
+
+          docData = { ...docData, type: 'video', titre, artiste, lien, youtubeId, couleur1, couleur2 };
+        }
+
+        await addDoc(collection(db, 'creations'), docData);
+
+        msg.style.color = '#008535';
+        msg.style.background = 'rgba(0,180,50,0.1)';
+        msg.innerHTML = `✅ <b>${docData.titre}</b> est maintenant en ligne !`;
+
+        // Reset
+        resetForm(folder);
+
+      } catch(e) {
+        console.error(e);
+        showError(msg, '❌ Erreur Firebase. Vérifiez la console.');
+      }
+    };
+
+    function showError(msg, text) {
+      msg.style.color = 'red';
+      msg.style.background = 'rgba(255,0,0,0.07)';
+      msg.textContent = text;
+    }
+
+    function resetForm(folder) {
+      if (folder === 'da') {
+        document.getElementById('da-titre').value = '';
+        document.getElementById('da-description').value = '';
+        document.getElementById('da-tag').value = '';
+        document.getElementById('da-lien').value = '';
+        // Reset photos to one empty input
+        const list = document.getElementById('photos-list');
+        list.innerHTML = `
+          <div class="photo-input-row">
+            <input type="url" class="form-control da-photo-url" placeholder="https://..." />
+            <button class="btn-rm-photo" onclick="removePhotoInput(this)">✕</button>
+          </div>`;
+      } else {
+        document.getElementById('vid-titre').value = '';
+        document.getElementById('vid-artiste').value = '';
+        document.getElementById('vid-lien').value = '';
+      }
+    }
+
+    // ---- MANAGE — LOAD BY FOLDER ----
+    window._currentManageFolder = 'da';
+
+    window.loadManageFolder = async function(folderKey, btn) {
+      // Update active button
+      document.querySelectorAll('.manage-folder-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      window._currentManageFolder = folderKey;
+
+      const loading = document.getElementById('manageLoading');
+      const list = document.getElementById('contentList');
+      loading.style.display = 'block';
+      list.innerHTML = '';
+
+      try {
+        const { collection: col, query: q, orderBy: ob, getDocs: gd } = window._firestore;
+        const db = window._db;
+        // On charge TOUT (orderBy seul = pas besoin d'index composite)
+        // puis on filtre côté client par dossier
+        const snap = await gd(q(col(db, 'creations'), ob('dateAdded', 'desc')));
+
+        loading.style.display = 'none';
+
+        const items = [];
+        snap.forEach(docSnap => {
+          const data = docSnap.data();
+          if (data.folder === folderKey) {
+            items.push({ id: docSnap.id, data });
+          }
+        });
+
+        if (items.length === 0) {
+          list.innerHTML = `<div class="manage-empty">Aucun contenu dans ce dossier.</div>`;
+          return;
+        }
+
+        items.forEach(({ id, data }) => {
+          const item = buildContentItem(id, data);
+          list.appendChild(item);
+        });
+      } catch(e) {
+        loading.style.display = 'none';
+        list.innerHTML = `<div class="manage-empty">Erreur de chargement Firebase : ${e.message}</div>`;
+        console.error(e);
+      }
+    };
+
+    function buildContentItem(id, data) {
+      const div = document.createElement('div');
+      div.className = 'content-item';
+      div.id = `item-${id}`;
+
+      // Thumbnail
+      let thumbStyle = `background: linear-gradient(145deg, ${data.couleur1 || '#ccc'}, ${data.couleur2 || '#eee'});`;
+      if (data.type === 'video' && data.youtubeId && data.youtubeId.length > 4) {
+        thumbStyle = `background-image: url('https://img.youtube.com/vi/${data.youtubeId}/mqdefault.jpg'); background-size: cover; background-position: center;`;
+      } else if (data.type === 'da' && data.photos && data.photos[0]) {
+        thumbStyle = `background-image: url('${data.photos[0]}'); background-size: cover; background-position: center;`;
+      }
+
+      const typeLabel = data.type === 'da' ? 'Direction Artistique' : (data.folder === 'pubs' ? 'Publicité' : 'Mariage');
+      const badgeClass = data.type === 'da' ? 'da' : 'video';
+      const sub = data.artiste || data.tag || data.description?.slice(0,50) || '—';
+
+      div.innerHTML = `
+        <div class="content-thumb" style="${thumbStyle}"></div>
+        <div class="content-info">
+          <strong>${data.titre || '(Sans titre)'}</strong>
+          <span>${sub}</span>
+          <div class="content-badges" style="margin-top:6px;">
+            <span class="badge ${badgeClass}">${typeLabel}</span>
+            ${data.type === 'video' ? '<span class="badge video">🎬 Vidéo</span>' : '<span class="badge da">🎨 DA</span>'}
+            ${data.photos?.length ? `<span class="badge">${data.photos.length} photo${data.photos.length > 1 ? 's' : ''}</span>` : ''}
+          </div>
+        </div>
+        <button class="btn-delete" onclick="deleteItem('${id}')">🗑 Supprimer</button>
+      `;
+      return div;
+    }
+
+    // ---- DELETE ----
+    window.deleteItem = async function(id) {
+      if (!confirm('Supprimer ce projet définitivement ?')) return;
+      try {
+        const { deleteDoc: dd, doc: d } = window._firestore;
+        await dd(d(window._db, 'creations', id));
+        const el = document.getElementById(`item-${id}`);
+        if (el) el.remove();
+        // If list is now empty
+        const list = document.getElementById('contentList');
+        if (!list.children.length) {
+          list.innerHTML = `<div class="manage-empty">Aucun contenu dans ce dossier.</div>`;
+        }
+      } catch(e) {
+        alert('Erreur lors de la suppression. Vérifiez la console.');
+        console.error(e);
+      }
+    };
+
+    // Auto-load manage tab when it becomes active
+    window._manageLoaded = false;
+  </script>
+
+  <script>
+    // ---- TAB SWITCHING ----
+    function switchTab(tab) {
+      document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+
+      const tabIdx = tab === 'add' ? 0 : 1;
+      document.querySelectorAll('.admin-tab')[tabIdx].classList.add('active');
+      document.getElementById(`panel-${tab}`).classList.add('active');
+
+      // Auto-load manage list on first open
+      if (tab === 'manage' && !window._manageLoaded) {
+        window._manageLoaded = true;
+        // Load default folder
+        const defaultBtn = document.querySelectorAll('.manage-folder-btn')[0];
+        window.loadManageFolder('da', defaultBtn);
+      }
+    }
+
+    // ---- FOLDER CHANGE → switch form ----
+    function onFolderChange() {
+      const folder = document.getElementById('folder').value;
+      const isDa = folder === 'da';
+      document.getElementById('form-da').style.display = isDa ? 'block' : 'none';
+      document.getElementById('form-video').style.display = isDa ? 'none' : 'block';
+      const notice = document.getElementById('video-notice');
+      if (notice) {
+        if (folder === 'pubs') notice.textContent = '📺 Mode Publicité — YouTube / Lien';
+        if (folder === 'mariage') notice.textContent = '💍 Mode Mariage — Vidéo souvenir';
+      }
+    }
+
+    // ---- PHOTOS (DA) ----
+    function addPhotoInput() {
+      const list = document.getElementById('photos-list');
+      const row = document.createElement('div');
+      row.className = 'photo-input-row';
+      row.innerHTML = `
+        <input type="url" class="form-control da-photo-url" placeholder="https://..." />
+        <button class="btn-rm-photo" onclick="removePhotoInput(this)" title="Supprimer">✕</button>
+      `;
+      list.appendChild(row);
+    }
+
+    function removePhotoInput(btn) {
+      const rows = document.querySelectorAll('.photo-input-row');
+      if (rows.length === 1) { btn.previousElementSibling.value = ''; return; }
+      btn.closest('.photo-input-row').remove();
+    }
+  </script>
+</body>
+</html>

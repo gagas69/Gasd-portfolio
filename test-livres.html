@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Créations - Système de Livres 3D</title>
+    <!-- On charge les mêmes polices que le site principal (Jost, Lora) et un fichier CSS dédié -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"> <!-- S'il y a des styles de base à hériter (reset, nav) -->
+    <link rel="stylesheet" href="css/books.css"> <!-- Styles spécifiques à cette page test -->
+</head>
+<body>
+    
+    <header class="test-header">
+        <a href="creations.html" class="back-link">Retour aux créations</a>
+        <h1 class="main-title">THE PERSONAL CURATION</h1>
+        <div class="header-numbers">
+            <span>2</span>
+            <span>5</span>
+        </div>
+    </header>
+
+    <main class="bookshelf-container">
+        <!-- Livre dynamique généré en HTML -->
+        <div class="book-container" data-title="Direction Artistique">
+            <div class="book">
+                <!-- La face avant (couverture) du livre, qui peut elle-même se tourner comme une porte -->
+                <div class="book-cover">
+                    <!-- Extérieur de la couverture -->
+                    <div class="cover-front" style="background-color: #3b5998;">
+                        <span class="cover-title">DIRECTION<br>ARTISTIQUE</span>
+                        <div class="cover-image placeholder-img"></div>
+                    </div>
+                    <!-- Intérieur de la couverture (page de gauche) -->
+                    <div class="cover-back">
+                        <h2>Gaspard<br>Production</h2>
+                    </div>
+                </div>
+                <!-- La tranche du livre, visible par défaut -->
+                <div class="book-spine" style="background-color: #2d4373;">
+                    <span class="spine-text">DIRECTION ARTISTIQUE</span>
+                </div>
+                <!-- Le dos du livre ou carrément la "page de droite" une fois la couverture ouverte -->
+                <div class="book-pages">
+                    <div class="page-content">
+                        <h3>Direction Artistique</h3>
+                        <p>Découvrez ma vision et mon univers visuel sur l'ensemble de mes projets créatifs.</p>
+                        <button class="view-project-btn">Voir le projet >></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-container" data-title="S,M,L,XL">
+            <div class="book">
+                <div class="book-cover">
+                    <div class="cover-front" style="background-color: #2c2c2c;">
+                        <span class="cover-title" style="color:white; transform: rotate(-90deg); margin-top:50px;">S,M,L,XL</span>
+                    </div>
+                    <div class="cover-back"></div>
+                </div>
+                <div class="book-spine" style="background-color: #1a1a1a;">
+                    <span class="spine-text" style="color:white;">S,M,L,XL</span>
+                </div>
+                <div class="book-pages">
+                    <div class="page-content">
+                        <h3>Projet S,M,L,XL</h3>
+                        <p>Création d'identité visuelle modulable à l'échelle...</p>
+                        <button class="view-project-btn">Voir le projet >></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-container" data-title="Graphisme">
+            <div class="book">
+                <div class="book-cover">
+                    <div class="cover-front" style="background-color: #f1c40f;">
+                        <span class="cover-title" style="color:black; font-weight:700;">PRINTABLE</span>
+                    </div>
+                    <div class="cover-back"></div>
+                </div>
+                <div class="book-spine" style="background-color: #d4ac0d;">
+                    <span class="spine-text" style="color:black;">PRINTABLE & GRAPHISME</span>
+                </div>
+                <div class="book-pages">
+                    <div class="page-content">
+                        <h3>Graphisme Intégré</h3>
+                        <p>Travaux d'impressions pour de grandes marques.</p>
+                        <button class="view-project-btn">Voir le projet >></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="book-container" data-title="Montage">
+            <div class="book height-tall">
+                <div class="book-cover">
+                    <div class="cover-front" style="background-color: #e74c3c;">
+                        <span class="cover-title" style="color:white;">MONTAGE<br>VIDÉO</span>
+                    </div>
+                    <div class="cover-back"></div>
+                </div>
+                <div class="book-spine" style="background-color: #c0392b;">
+                    <span class="spine-text" style="color:white;">VIDÉO ET CLIP</span>
+                </div>
+                <div class="book-pages">
+                    <div class="page-content">
+                        <h3>Montage Vidéo</h3>
+                        <p>Clips musicaux, vlogs et courts-métrages montés sur Premiere Pro.</p>
+                        <button class="view-project-btn">Voir le projet >></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-container" data-title="Photo">
+            <div class="book height-small">
+                <div class="book-cover">
+                    <div class="cover-front" style="background-color: #27ae60;">
+                        <span class="cover-title" style="color:white;">PHOTOGRAPHIE</span>
+                    </div>
+                    <div class="cover-back"></div>
+                </div>
+                <div class="book-spine" style="background-color: #1e8449;">
+                    <span class="spine-text" style="color:white;">PHOTOS DE RUE</span>
+                </div>
+                <div class="book-pages">
+                    <div class="page-content">
+                        <h3>Série Rue de France</h3>
+                        <p>Portraits et ambiances de ville.</p>
+                        <button class="view-project-btn">Voir le projet >></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="js/books.js"></script>
+</body>
+</html>
