@@ -430,6 +430,7 @@
         renderProject({
           titre: "Piko",
           tag: "Mobile Game Design & Dev",
+          folder: 'da',
           dateAdded: "2025-03-01T00:00:00Z",
           couleur1: "#a594f9",
           couleur2: "#000000",
@@ -499,6 +500,7 @@
         renderProject({
           titre: "Observatoire du Gros Cerveau",
           tag: "OAGC / UI-UX",
+          folder: 'da',
           dateAdded: "2024-05-01T00:00:00Z",
           lien: "https://gagas69.github.io/OAGC-2026-GASPARD/index.html",
           couleur1: "#1a3c20",
@@ -552,6 +554,7 @@
         renderProject({
           titre: "Pilot",
           tag: "Product Design & Développement",
+          folder: 'da',
           dateAdded: "2025-02-15T00:00:00Z",
           couleur1: "#ff6b6b",
           couleur2: "#1a1a2e",
@@ -637,6 +640,7 @@
         renderProject({
           titre: "Murs\u00a0Murs",
           tag: "Média Architecture & Design",
+          folder: 'da',
           dateAdded: "2025-01-10T00:00:00Z",
           couleur1: "#0D2133",
           couleur2: "#CDD46B",
@@ -697,6 +701,7 @@
         renderProject({
           titre: "Da Adamo",
           tag: "Identité Globale & 360°",
+          folder: 'da',
           dateAdded: "2023-11-20T00:00:00Z",
           couleur1: "#2B3778",
           couleur2: "#AA4D40",
@@ -819,6 +824,8 @@
            </a>`
         : '';
 
+      const backLink = (data.folder === 'da') ? 'creations-da.html' : 'creations.html';
+
       const page = document.getElementById('projectPage');
       page.innerHTML = `
         <!-- HERO -->
@@ -826,7 +833,7 @@
           <div class="da-hero-bg" style="${heroBg}"></div>
           <div class="da-hero-overlay"></div>
           <div class="da-hero-content">
-            <a href="creations.html" class="da-back-link">Retour aux créations</a>
+            <a href="${backLink}" class="da-back-link">Retour aux créations</a>
             ${data.tag ? `<div class="da-hero-tag">${data.tag}</div>` : ''}
             <h1 class="da-hero-title">${data.titre || 'Projet sans titre'}</h1>
           </div>
